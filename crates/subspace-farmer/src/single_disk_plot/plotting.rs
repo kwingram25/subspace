@@ -61,7 +61,7 @@ where
     // TODO: Consider adding number of pieces in a sector to protocol info
     //  explicitly and, ideally, we need to remove 2x replication
     //  expectation from other places too
-    let current_segment_index = farmer_protocol_info.total_pieces.get()
+    let current_segment_index = farmer_protocol_info.total_pieces
         / u64::from(farmer_protocol_info.recorded_history_segment_size)
         / u64::from(farmer_protocol_info.record_size.get())
         * 2;

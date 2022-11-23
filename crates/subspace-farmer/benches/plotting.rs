@@ -4,7 +4,7 @@ use rand::{thread_rng, Rng};
 use rayon::current_num_threads;
 use rayon::prelude::*;
 use std::io;
-use std::num::{NonZeroU16, NonZeroU32, NonZeroU64};
+use std::num::{NonZeroU16, NonZeroU32};
 use std::sync::atomic::AtomicBool;
 use std::time::Instant;
 use subspace_archiving::archiver::Archiver;
@@ -47,7 +47,7 @@ fn criterion_benchmark(c: &mut Criterion) {
         genesis_hash: Default::default(),
         record_size: NonZeroU32::new(RECORD_SIZE).unwrap(),
         recorded_history_segment_size: RECORDED_HISTORY_SEGMENT_SIZE,
-        total_pieces: NonZeroU64::new(1).unwrap(),
+        total_pieces: 1,
         space_l: NonZeroU16::new(20).unwrap(),
         sector_expiration: 1,
     };

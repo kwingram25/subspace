@@ -19,7 +19,7 @@ use sp_runtime::app_crypto::UncheckedFrom;
 use sp_runtime::testing::H256;
 use sp_runtime::traits::Header as HeaderT;
 use sp_runtime::{Digest, DigestItem};
-use std::num::{NonZeroU16, NonZeroU64};
+use std::num::NonZeroU16;
 use subspace_archiving::archiver::{ArchivedSegment, Archiver};
 use subspace_core_primitives::crypto::kzg::{Kzg, Witness};
 use subspace_core_primitives::crypto::{blake2b_256_254_hash, kzg};
@@ -102,7 +102,7 @@ fn valid_header(
     let archived_segment = archived_segment(kzg.clone());
     let segment_index = archived_segment.root_block.segment_index();
     let records_root = archived_segment.root_block.records_root();
-    let total_pieces = NonZeroU64::new(archived_segment.pieces.count() as u64).unwrap();
+    let total_pieces = archived_segment.pieces.count() as u64;
 
     // There may be no solution in the first sector, iterate until we get a solution
     for sector_index in 0.. {

@@ -27,7 +27,6 @@ mod mock;
 mod tests;
 
 use codec::{Decode, Encode, MaxEncodedLen};
-use core::num::NonZeroU64;
 use equivocation::{HandleEquivocation, SubspaceEquivocationOffence};
 use frame_support::dispatch::{DispatchResult, DispatchResultWithPostInfo};
 use frame_support::traits::{Get, OnTimestampSet};
@@ -636,11 +635,10 @@ impl<T: Config> Pallet<T> {
     }
 
     /// Total number of pieces in the blockchain
-    pub fn total_pieces() -> NonZeroU64 {
+    pub fn total_pieces() -> u64 {
         // Chain starts with one segment plotted, even if it is not recorded in the runtime yet
         let number_of_segments = u64::from(RecordsRoot::<T>::count()).max(1);
-        NonZeroU64::new(number_of_segments * u64::from(PIECES_IN_SEGMENT))
-            .expect("Neither of multiplied values is zero; qed")
+        number_of_segments * u64::from(PIECES_IN_SEGMENT)
     }
 
     /// Determine whether a randomness update should take place at this block.

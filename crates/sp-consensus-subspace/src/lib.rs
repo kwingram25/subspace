@@ -29,7 +29,6 @@ mod tests;
 
 use crate::digests::{CompatibleDigestItem, PreDigest};
 use codec::{Decode, Encode, MaxEncodedLen};
-use core::num::NonZeroU64;
 use core::time::Duration;
 use scale_info::TypeInfo;
 use schnorrkel::context::SigningContext;
@@ -370,7 +369,7 @@ sp_api::decl_runtime_apis! {
         fn is_in_block_list(farmer_public_key: &FarmerPublicKey) -> bool;
 
         /// Total number of pieces in a blockchain
-        fn total_pieces() -> NonZeroU64;
+        fn total_pieces() -> u64;
 
         /// Get the merkle tree root of records for specified segment index
         fn records_root(segment_index: SegmentIndex) -> Option<RecordsRoot>;

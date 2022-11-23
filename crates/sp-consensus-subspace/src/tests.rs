@@ -7,7 +7,6 @@ use sp_consensus_slots::Slot;
 use sp_core::crypto::UncheckedFrom;
 use sp_runtime::traits::BlakeTwo256;
 use sp_runtime::{Digest, DigestItem};
-use std::num::NonZeroU64;
 use subspace_core_primitives::{ChunkSignature, Solution};
 use subspace_solving::REWARD_SIGNING_CONTEXT;
 
@@ -23,7 +22,7 @@ fn test_is_equivocation_proof_valid() {
         public_key: offender.clone(),
         reward_address: (),
         sector_index: 0,
-        total_pieces: NonZeroU64::new(1).unwrap(),
+        total_pieces: 1,
         piece_offset: 0,
         piece_record_hash: Default::default(),
         piece_witness: Default::default(),

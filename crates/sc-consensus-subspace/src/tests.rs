@@ -64,7 +64,6 @@ use std::cell::RefCell;
 use std::collections::HashMap;
 use std::future::Future;
 use std::marker::PhantomData;
-use std::num::NonZeroU64;
 use std::pin::Pin;
 use std::sync::Arc;
 use std::task::Poll;
@@ -688,7 +687,7 @@ pub fn dummy_claim_slot(
                 public_key: FarmerPublicKey::unchecked_from([0u8; 32]),
                 reward_address: FarmerPublicKey::unchecked_from([0u8; 32]),
                 sector_index: 0,
-                total_pieces: NonZeroU64::new(1).unwrap(),
+                total_pieces: 1,
                 piece_offset: 0,
                 piece_record_hash: Default::default(),
                 piece_witness: Default::default(),

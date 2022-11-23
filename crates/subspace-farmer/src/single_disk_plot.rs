@@ -29,7 +29,7 @@ use serde::{Deserialize, Serialize};
 use std::fs::OpenOptions;
 use std::future::Future;
 use std::io::{Seek, SeekFrom};
-use std::num::{NonZeroU16, NonZeroU64};
+use std::num::{NonZeroU16};
 use std::path::{Path, PathBuf};
 use std::pin::Pin;
 use std::sync::atomic::{AtomicBool, Ordering};
@@ -258,7 +258,7 @@ impl PlotMetadataHeader {
 #[derive(Debug, Encode, Decode, Clone)]
 pub struct SectorMetadata {
     /// Total number of pieces in archived history of the blockchain as of sector creation
-    pub total_pieces: NonZeroU64,
+    pub total_pieces: u64,
     /// Sector expiration, defined as sector of the archived history of the blockchain
     pub expires_at: SegmentIndex,
 }
@@ -267,7 +267,7 @@ impl SectorMetadata {
     /// Size of encoded sector metadata
     pub fn encoded_size() -> usize {
         let default = SectorMetadata {
-            total_pieces: NonZeroU64::new(1).expect("1 is not 0; qed"),
+            total_pieces: 1,
             expires_at: 0,
         };
 

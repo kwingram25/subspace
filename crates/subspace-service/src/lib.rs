@@ -430,7 +430,7 @@ where
                         .expect("Can't receive total pieces number.");
 
                     // segment index with a zero-based index-shift
-                    (total_pieces.get() / PIECES_IN_SEGMENT as u64).saturating_sub(1)
+                    (total_pieces / PIECES_IN_SEGMENT as u64).saturating_sub(1)
                 }
             }),
         )
